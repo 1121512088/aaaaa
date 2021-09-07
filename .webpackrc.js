@@ -29,19 +29,19 @@ export default {
   alias: {
     "@": path.resolve(__dirname, "./src"),
   },
-  commons: [
-    {
-      name: 'vendor.js',
-      filename: 'vendor.js',
-      minChunks: (module) => {
-        var resource = module.resource;
-        if (!resource)
-          return false;
-        for (var libName of Object.keys(packagejson.dependencies)) {
-          if (resource.indexOf(path.resolve(__dirname, 'node_modules', libName)) >= 0)
-            return true;
-        }
-      },
-    },
-  ],
+  // commons: [
+  //   {
+  //     name: 'vendor.js',
+  //     filename: 'vendor.js',
+  //     minChunks: (module) => {
+  //       var resource = module.resource;
+  //       if (!resource)
+  //         return false;
+  //       for (var libName of Object.keys(packagejson.dependencies)) {
+  //         if (resource.indexOf(path.resolve(__dirname, 'node_modules', libName)) >= 0)
+  //           return true;
+  //       }
+  //     },
+  //   },
+  // ],
 }
