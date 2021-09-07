@@ -1,0 +1,30 @@
+.TextRightAlignJustifyRemark {
+  width: 50%;
+  float: left;
+  height: 0.3rem;
+  line-height: 0.3rem;
+  display: flex;
+
+  .TextRightAlignJustifyRemark_span1 {
+    display: inline-block;
+    width: 0.6rem;
+    overflow:hidden;
+
+    text-align: justify;
+    text-align-last: justify;
+    text-justify: inter-ideograph;/*兼容ie*/
+  }
+
+  .TextRightAlignJustifyRemark_span1:after {
+    content: '';
+    width: 100%;
+    display: inline-block;
+  }
+
+  .TextRightAlignJustifyRemark_span2 {
+    flex: 1;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
+}

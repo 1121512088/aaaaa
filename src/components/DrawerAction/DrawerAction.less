@@ -1,0 +1,31 @@
+.drawerAction {
+  position: fixed;
+  left: 100%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 13;
+  animation: mask 0.4s;
+  animation-fill-mode: forwards;
+  
+  .drawerAction_mask {
+    float: right;
+    height: 100%;
+    width: 85%;
+    background: #fff;
+  }
+}
+
+.active {
+  display: none;
+}
+
+@keyframes mask {
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0;
+  }
+}
