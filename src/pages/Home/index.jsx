@@ -4,7 +4,14 @@ import { connect } from 'dva';
 
 import styles from './index.less';
 
-class Home extends React.Component {
+@connect(({ user, stock }) => {
+  return {
+    user,
+    stock,
+  };
+})
+
+export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +23,6 @@ class Home extends React.Component {
   }
 
   render() {
-
     return (
       <div className={styles.Home}>
         home
@@ -25,10 +31,3 @@ class Home extends React.Component {
     );
   }
 }
-
-export default connect(({ user, stock }) => {
-  return {
-    user,
-    stock,
-  };
-})(Home);

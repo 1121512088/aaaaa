@@ -1,12 +1,11 @@
 import React from 'react';
-import { connect } from 'dva';
 import { getPaths } from '@/router';
 
 import styles from './index.less';
 
 const paths = getPaths();
 
-class App extends React.Component {
+ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -59,4 +58,3 @@ class App extends React.Component {
     );
   }
 }
-export default connect()(App);
