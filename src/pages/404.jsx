@@ -4,7 +4,7 @@ export default class Page404 extends Component {
 
   render() {
     return (
-      <div className={styles.Page404}>
+      <div>
         404
       </div>
     );

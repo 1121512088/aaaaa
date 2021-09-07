@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 
-import styles from './template.less';
+import styles from './index.less';
 
-class template extends Component {
+class Template extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,13 +15,13 @@ class template extends Component {
 
   render() {
     return (
-      <div className={styles.template}>
+      <div className={styles.Template}>
       </div>
     );
   }
 }
 
-template.propTypes = {
+Template.propTypes = {
 };
 
-export default connect()(template);
+export default connect()(Template);

@@ -1,73 +1,69 @@
-// import React from 'react';
-// import dynamic from 'dva/dynamic';
-// import { Router, Route, Switch, Redirect } from 'dva/router';
-// import {
-//   Home
-// } from '@/containers';
+import React, { Suspense, lazy } from 'react';
+import { router, dynamic } from 'dva';
+import { App, Page404 } from '@/pages';
 
 // import 'antd-mobile/dist/antd-mobile.less';
+const { Router, Route, Switch, Redirect } = router;
+const rootPath = `/mobile`;
 
-// export function HostLocation() {
-//   return '/mobile/quection';
-// }
+const dynamicWrapper = (app, models, component) => {
+  return dynamic({
+    app,
+    models: () => models.map(m => app.model(require(`./models/${m}`).default)),
+    component,
+    // component: lazy(() => import(`./pages/${component}`)),
+  });
+};
 
-// export function PathLocation() {
-//   return '/mobile';
-// }
+export function getPaths() {
+  return {
+    rootPath,
+  };
+}
 
-// const dynamicWrapper = (app, models, component) => dynamic({
-//   app,
-//   models: () => models.map(m => app.model(require(`./models/${m}`).default)),
-//   component,
-// });
+export default function RouterConfig({ app, history }) {
+  const pagas = [
+    {
+      name: '首页',
+      path: '/home',
+      models: [],
+      component: () => import('./pages/Home'),
+    },
+  ];
 
-// export default function RouterConfig({ app, history }) {
-//   const apps = [
-//     {
-//       name: '首页',
-//       path: `${HostLocation()}/home`,
-//       models: [],
-//       component: () => import('./containers/Home'),
-//     },
-//   ];
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Router history={history}>
+        <Switch>
+          <Redirect exact from="/" to={rootPath} />
+          <Redirect exact from={rootPath} to={`${rootPath}/home`} />
+          {/* <Route path={`/404`} component={Page404} /> */}
+          <Route
+            path={rootPath}
+            component={route => (
+              <App {...route}>
+                <Switch>
+                  {
+                    pagas.map(({ path, models, component }) => (
+                      <Route
+                        key={path}
+                        path={`${rootPath}${path}`}
+                        exact
+                        component={
+                          dynamicWrapper(app, models, component)
+                        }>
+                      </Route>
+                    ))
+                  }
+                  {/* 404 */}
+                  {/* <Route path="*" component={() => (<Redirect to="/404" />)}></Route> */}
+                </Switch>
+              </App>
+            )} />
 
-//   return (
-//     <Router history={history}>
-//       <Switch>
-//         <Redirect exact from="/" to={HostLocation()} />
-//         <Redirect exact from="/mobile" to={HostLocation()} />
-//         <Redirect exact from={HostLocation()} to={`${HostLocation()}/home`} />
-//         <Route path={`/404`} component={Page404} />
-
-//         <Route
-//           path={HostLocation()}
-//           component={route => (
-//             <App {...route}>
-//               <Switch>
-//                 {
-//                   apps.map(({ path, models, component }) => (
-//                     <Route
-//                       key={path}
-//                       path={path}
-//                       exact
-//                       component={
-//                         dynamicWrapper(app, models, component)
-//                       }>
-//                     </Route>
-//                   ))
-//                 }
-//                 {/* 404 */}
-//                 <Route path="*" component={() => (<Redirect to="/404" />)}></Route>
-//               </Switch>
-//             </App>
-//           )} />
-//         {/* 404 */}
-//         <Route path="*" component={() => (<Redirect to="/404" />)} />
-
-//       </Switch>
-//     </Router>
-//   );
-// }
-export default () => {
-  return "123"
+          {/* <Route path="*" component={() => (<Redirect to="/404" />)} /> */}
+        </Switch>
+      </Router>
+    </Suspense>
+  );
 }

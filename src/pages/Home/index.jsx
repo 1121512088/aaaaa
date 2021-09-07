@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Header } from '@/components';
+// import { Header } from '@/components';
 
 import styles from './index.less';
 
@@ -19,7 +19,8 @@ class Home extends React.Component {
 
     return (
       <div className={styles.Home}>
-        <Header className={styles.header} leftnone={true} center={'首页'} />
+        home
+        {/* <Header className={styles.header} leftnone={true} center={'首页'} /> */}
       </div>
     );
   }
