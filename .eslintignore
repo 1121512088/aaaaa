@@ -1,10 +1,1 @@
-webpack/*
-karma.conf.js
-tests.webpack.js
 node_modules/*
-*_www/*
-src/components/__tests__/*
-cordova_plugins.js
-cordova.js
-/helpers/__tests__/*
-plugins/*

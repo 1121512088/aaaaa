@@ -1,7 +1,7 @@
 ### 下包
 ```
-npm i  
-yarn
+npm i
+
 ```
 
 ### 启动项目
@@ -9,7 +9,12 @@ yarn
 npm start
 ```
 
-### 打包
+### 测试服务打包
+```
+npm run test:server
+```
+
+### 生产打包
 ```
 npm run build
 ```

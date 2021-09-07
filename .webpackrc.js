@@ -1,7 +1,7 @@
 const path = require('path');
 
 let publicPath = "";
-if ((process.env.BABEL_ENV || process.env.NODE_ENV || 'development') !== 'development') {
+if ((process.env.MAIN_ENV || process.env.NODE_ENV || 'development') !== 'development') {
   publicPath = '/mobile/';
 }
 export default {

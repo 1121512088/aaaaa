@@ -1,6 +1,3 @@
-import { Api, I18n } from '@/helpers';
-import Permission from '@/helpers/Permission';
-import Immutable from 'immutable'
 
 export default {
 
